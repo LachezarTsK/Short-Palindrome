@@ -31,18 +31,18 @@ public class Solution {
 		 */
 		for (int i = 0; i < inputString.length(); i++) {
 
-			int current = (int) inputString.charAt(i) % 97;
+			int currentChar = (int) inputString.charAt(i) % 97;
 
 			for (int c = 'a' % 97; c <= 'z' % 97; c++) {
 
-				int previous = four[current][c][c][current];
-				four[current][c][c][current] = (four[current][c][c][current] + three[current][c][c]) % modulus;
-				three[c][current][current] = (three[c][current][current] + two[c][current]) % modulus;
-				two[c][current] = (two[c][current] + one[c]) % modulus;
-				totalPalindromes += four[current][c][c][current] - previous;
+				int previousValue = four[currentChar][c][c][currentChar];
+				four[currentChar][c][c][currentChar] = (four[currentChar][c][c][currentChar] + three[currentChar][c][c]) % modulus;
+				three[c][currentChar][currentChar] = (three[c][currentChar][currentChar] + two[c][currentChar]) % modulus;
+				two[c][currentChar] = (two[c][currentChar] + one[c]) % modulus;
+				totalPalindromes += four[currentChar][c][c][currentChar] - previousValue;
 			}
 
-			one[current]++;
+			one[currentChar]++;
 		}
 
 		System.out.println(totalPalindromes % modulus);
